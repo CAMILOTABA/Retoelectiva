@@ -1,36 +1,36 @@
 const express = require('express')
-const userSchema = require('../models/user')
+const userSchema = require('../models/user.js')
 const router = express.Router()
 // Agregar un nuevo usuario
 router.post('/users',(req,res)=>{
     const user = userSchema(req.body)
     user
-    .save()
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}))
+        .save()
+        .then((data)=>res.json(data))
+        .catch((error)=>res.json({message:error}))
     })
     // Listar los usuarios existentes en la BD
     router.get('/users',(req,res)=>{
     userSchema
-    .find()
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}))
+        .find()
+        .then((data)=>res.json(data))
+        .catch((error)=>res.json({message:error}))
     })
     // Consultar un recurso específico existente en la BD
     router.get('/users/:id',(req,res)=>{
     const {id} = req.params
     userSchema
-    .findById(id)
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}))
+        .findById(id)
+        .then((data)=>res.json(data))
+        .catch((error)=>res.json({message:error}))
     })
     // Eliminar un recurso específico existente en la BD
     router.delete('/users/:id',(req,res)=>{
     const {id} = req.params
     userSchema
-    .remove({ _id: id })
-    .then((data)=>res.json(data))
-    .catch((error)=>res.json({message:error}))
+        .remove({ _id: id })
+        .then((data)=>res.json(data))
+        .catch((error)=>res.json({message:error}))
     })
     // Actualizar un recurso específico existente en la BD
     router.put('/users/:id',(req,res)=>{
